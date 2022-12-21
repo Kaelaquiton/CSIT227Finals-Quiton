@@ -41,7 +41,7 @@ public abstract class Person {
             return super.toString();
         }
         public double thirteenthMonth(){
-            salary = salary * (12 / months_worked);
+            salary = salary / (12 / months_worked);
             return salary;
         }
     }
