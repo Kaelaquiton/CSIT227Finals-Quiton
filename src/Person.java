@@ -29,8 +29,6 @@ public class Person {
         return "Hello, my name is " + name;
     }
 
-
-
     public class Employee extends Person{
         int months_worked;
         int salary;
@@ -57,7 +55,7 @@ public class Person {
         }
     }
 
-    public class Clerk extends Person{
+    public class Clerk extends Employee{
         public Clerk(String name, int age) {
             super(name, age);
         }
@@ -66,7 +64,7 @@ public class Person {
         }
     }
 
-    public class Manager extends Person{
+    public class Manager extends Employee{
         public Manager(String name, int age) {
             super(name, age);
         }
@@ -74,10 +72,6 @@ public class Person {
             return super.toString();
         }
     }
-
-
-
-
 
 
 }

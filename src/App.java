@@ -34,8 +34,23 @@ public class App extends JFrame{
         btnG.add(rbClerk);
         btnG.add(rbManager);
 
+        btnSavePerson.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addlist();
+            }
+        });
 
     }
+
+    public void addlist(){
+        if(rbCustomer.isSelected()){
+            add(rbCustomer);
+        }
+    }
+
+
+
 
     public static void main(String[] args) {
         // add here how to make GUI visible
