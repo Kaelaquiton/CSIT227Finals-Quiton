@@ -43,16 +43,10 @@ public class App extends JFrame{
         });
 
 
-
-
-
-
     }
 
     public void Save(){
-        if(rbClerk.isSelected()){
 
-        }
     }
 
     public void inputs(){
