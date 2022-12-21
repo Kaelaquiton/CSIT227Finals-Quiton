@@ -36,8 +36,9 @@ public class App extends JFrame{
     public static void main(String[] args) {
         // add here how to make GUI visible
         App app = new App();
+        app.setContentPane(app.pnlMain);
         app.setVisible(true);
-        app.setSize(200,200);
+        app.setSize(600,400);
         app.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
