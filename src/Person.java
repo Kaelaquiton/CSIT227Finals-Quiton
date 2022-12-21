@@ -42,7 +42,7 @@ public abstract class Person {
         }
         public double thirteenthMonth(){
             salary = salary * (12 / months_worked);
-            return 0;
+            return salary;
         }
     }
 
