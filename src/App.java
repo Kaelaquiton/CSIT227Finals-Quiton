@@ -34,18 +34,19 @@ public class App extends JFrame{
         btnG.add(rbClerk);
         btnG.add(rbManager);
 
-        btnSavePerson.addActionListener(new ActionListener() {
+        btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addlist();
+                Save();
             }
         });
 
     }
 
-    public void addlist(){
-        if(rbCustomer.isSelected()){
-            add(rbCustomer);
+    public void Save(){
+        persons per =
+        if(rbClerk.isSelected()){
+
         }
     }
 

@@ -1,4 +1,4 @@
-public class Person {
+public abstract class Person {
     // TODO implement Person and its subclasses in other Java files
 
     String name;
