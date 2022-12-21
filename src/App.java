@@ -38,18 +38,33 @@ public class App extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Save();
+                inputs();
             }
         });
+
+
+
+
+
 
     }
 
     public void Save(){
-        persons per =
         if(rbClerk.isSelected()){
 
         }
     }
 
+    public void inputs(){
+        try {
+            String name = String.valueOf(tfName.getText());
+            int age = Integer.parseInt(tfAge.getText());
+            int monthsworked = Integer.parseInt(tfAge.getText());
+            int salary = Integer.parseInt(tfAge.getText());
+        }catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(pnlMain, "Error! Please Fill out the form correctly");
+        }
+    }
 
 
 
