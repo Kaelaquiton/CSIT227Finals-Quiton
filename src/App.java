@@ -29,10 +29,6 @@ public class App extends JFrame{
         persons = new ArrayList<>();
         // TODO add implementations for all milestones here
 
-        ButtonGroup btnG = new ButtonGroup();
-        btnG.add(rbCustomer);
-        btnG.add(rbClerk);
-        btnG.add(rbManager);
 
         btnSave.addActionListener(new ActionListener() {
             @Override
@@ -69,7 +65,6 @@ public class App extends JFrame{
         app.setVisible(true);
         app.setSize(600,400);
         app.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
     }
 
     static void giveReward(int n) {
