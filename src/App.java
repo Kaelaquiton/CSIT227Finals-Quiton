@@ -33,28 +33,44 @@ public class App extends JFrame{
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Save();
-                inputs();
+                if(rbCustomer.isSelected()){
+                    String name = tfName.getText();
+                    int age = Integer.parseInt(tfAge.getText());
+                    Person p = new Customer(name,age);
+                    persons.add(p);
+                    taPersons.append(String.valueOf(persons.indexOf(p)+1)+". Customer - "+ name + "(" + age + ")"+"\n");
+
+                }
+                if(rbClerk.isSelected()){
+                    String name = tfName.getText();
+                    int age = Integer.parseInt(tfAge.getText());
+                    double salary = Double.parseDouble(tfSalary.getText());
+                    int monthsWorked = Integer.parseInt(tfMonths.getText());
+                    Person p = new Clerk(name,age,monthsWorked,salary);
+                    persons.add(p);
+                    taPersons.append(String.valueOf(persons.indexOf(p)+1)+". Clerk - "+ name + "(" + age + ")"+"\n");
+
+                }
+
+                if(rbManager.isSelected()){
+                    String name = tfName.getText();
+                    int age = Integer.parseInt(tfAge.getText());
+                    double salary = Double.parseDouble(tfSalary.getText());
+                    int monthsWorked = Integer.parseInt(tfMonths.getText());
+                    Person p = new Manager(name,age,monthsWorked,salary);
+                    persons.add(p);
+                    taPersons.append(String.valueOf(persons.indexOf(p)+1)+". Manager - "+ name + "(" + age + ")"+"\n");
+
+                }
+
             }
         });
 
 
     }
 
-    public void Save(){
 
-    }
 
-    public void inputs(){
-        try {
-            String name = String.valueOf(tfName.getText());
-            int age = Integer.parseInt(tfAge.getText());
-            int monthsworked = Integer.parseInt(tfAge.getText());
-            int salary = Integer.parseInt(tfAge.getText());
-        }catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(pnlMain, "Error! Please Fill out the form correctly");
-        }
-    }
 
 
 
