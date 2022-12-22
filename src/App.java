@@ -30,6 +30,36 @@ public class App extends JFrame{
         persons = new ArrayList<>();
         // TODO add implementations for all milestones here
         taPersons.setEditable(false);
+        tfMonths.setEnabled(false);
+        tfSalary.setEnabled(false);
+
+        rbCustomer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tfMonths.setEnabled(false);
+                tfMonths.setEditable(false);
+                tfSalary.setEnabled(false);
+                tfSalary.setEditable(false);
+            }
+        });
+        rbClerk.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tfMonths.setEnabled(true);
+                tfMonths.setEditable(true);
+                tfSalary.setEnabled(true);
+                tfSalary.setEditable(true);
+            }
+        });
+        rbManager.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tfMonths.setEnabled(true);
+                tfMonths.setEditable(true);
+                tfSalary.setEnabled(true);
+                tfSalary.setEditable(true);
+            }
+        });
 
         btnSave.addActionListener(new ActionListener() {
             @Override
