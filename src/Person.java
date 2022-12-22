@@ -23,50 +23,61 @@ public abstract class Person {
         return "Hello, my name is " + name;
     }
 
-    public class Employee extends Person{
-        int months_worked;
-        int salary;
 
-        public Employee(String name, int age) {
-            super(name, age);
+}
+
+    abstract class Employee extends Person{
+    int months_worked;
+    double salary;
+
+    public Employee(String name, int age, int months_worked, double salary) {
+        super(name, age);
+        this.months_worked = months_worked;
+        this.salary = salary;
+    }
+        public int getMonths_worked(){
+            return months_worked;
         }
-
-        public String toString() {
-            return super.toString();
+        public double getSalary(){
+            return salary;
         }
         public double thirteenthMonth(){
             salary = salary / (12 / months_worked);
             return salary;
         }
-    }
-
-    public class Customer extends Person{
-        public Customer(String name, int age) {
-            super(name, age);
-        }
         public String toString() {
             return super.toString();
         }
+
+}
+
+
+
+class Customer extends Person{
+    public Customer(String name, int age) {
+        super(name, age);
     }
-
-    public class Clerk extends Employee{
-        public Clerk(String name, int age) {
-            super(name, age);
-        }
-        @Override
-        public String toString() {
-            return super.toString() + " How may I help you?";
-        }
+    public String toString() {
+        return super.toString();
     }
+}
 
-    public class Manager extends Employee{
-        public Manager(String name, int age) {
-            super(name, age);
-        }
-        public String toString() {
-            return super.toString();
-        }
+class Clerk extends Employee {
+
+    public Clerk(String name, int age, int months_worked, double salary) {
+        super(name, age, months_worked,salary);
     }
+    @Override
+    public String toString() {
+        return super.toString() + " How may I help you?";
+    }
+}
 
-
+class Manager extends Employee {
+    public Manager(String name, int age, int months_worked, double salary) {
+        super(name, age, months_worked, salary);
+    }
+    public String toString() {
+        return super.toString();
+    }
 }
