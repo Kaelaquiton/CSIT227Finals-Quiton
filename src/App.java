@@ -270,8 +270,27 @@ public class App extends JFrame{
             }
         });
 
+        btnLoadPerson.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Scanner scan = new Scanner(System.in);
+                taPersons.setText("");
+                try (BufferedReader br = new BufferedReader(new FileReader("src/Person.txt"));
+                     BufferedWriter bw = new BufferedWriter(new FileWriter("src/Person.txt", true))) {
+                    String list;
+                    while ((list = br.readLine()) != null) {
+                        taPersons.append(list + "\n");
+                        bw.newLine();
+                    }
+                    JOptionPane.showMessageDialog(pnlMain, "DONE");
+                } catch (FileNotFoundException except) {
+                    throw new RuntimeException(except);
+                } catch (IOException except) {
+                    throw new RuntimeException(except);
+                }
+            }
+        });
     }
-
 
     public static void main(String[] args) {
         // add here how to make GUI visible
