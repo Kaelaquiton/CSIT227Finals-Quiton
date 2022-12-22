@@ -7,17 +7,11 @@ public abstract class Person {
         this.name = name;
         this.age =age;
     }
-    public void setName(String name){
-        this.name = name;
-    }
 
     public String getName(String name){
        return name;
     }
 
-    public void setAge(int Age){
-        this.age = age;
-    }
 
     public int getAge(int age){
         return age;
@@ -59,8 +53,9 @@ public abstract class Person {
         public Clerk(String name, int age) {
             super(name, age);
         }
+        @Override
         public String toString() {
-            return "How may I help you?";
+            return super.toString() + " How may I help you?";
         }
     }
 
