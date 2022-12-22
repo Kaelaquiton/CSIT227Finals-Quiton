@@ -30,7 +30,6 @@ public class App extends JFrame{
         persons = new ArrayList<>();
         // TODO add implementations for all milestones here
         taPersons.setEditable(false);
-        taPersons.setEnabled(false);
 
         btnSave.addActionListener(new ActionListener() {
             @Override
@@ -88,12 +87,12 @@ public class App extends JFrame{
                     if(selected == false){
                         throw new IOException("Please select a person");
                     }
-                }catch (NumberFormatException e0){
+                }catch (NumberFormatException except){
                     JOptionPane.showMessageDialog(pnlMain,"Please enter valid input");
-                }catch(IllegalArgumentException e1) {
-                    JOptionPane.showMessageDialog(pnlMain, e1);
-                }catch(IOException e2){
-                    JOptionPane.showMessageDialog(pnlMain,e2);
+                }catch(IllegalArgumentException except) {
+                    JOptionPane.showMessageDialog(pnlMain, except);
+                }catch(IOException except){
+                    JOptionPane.showMessageDialog(pnlMain,except);
                 }
             }
         });
@@ -106,10 +105,49 @@ public class App extends JFrame{
                 tfMonths.setText("");
                 tfSalary.setText("");
                 tfLoad.setText("");
-
             }
         });
 
+        btnLoad.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int number = Integer.parseInt(tfLoad.getText());
+                    int counter = 0;
+                    if(number < 1 || number > persons.size()) {
+                        throw new ArrayIndexOutOfBoundsException("The list is empty or out of bounds");
+                    }
+                    for (Person p : persons) {
+                        counter++;
+                        if (counter == number) {
+                            tfName.setText(p.getName());
+                            tfAge.setText(Integer.toString(p.getAge()));
+                            if (p instanceof Customer) {
+                                rbCustomer.setSelected(true);
+                                tfMonths.setText("");
+                                tfSalary.setText("");
+                            }
+                            if (p instanceof Employee) {
+                                Employee person = (Employee) p;
+                                tfMonths.setText(Integer.toString(person.getMonths_worked()));
+                                tfSalary.setText(Double.toString(person.getSalary()));
+                                if (p instanceof Clerk) {
+                                    rbClerk.setSelected(true);
+                                }
+                                if (p instanceof Manager) {
+                                    rbManager.setSelected(true);
+                                }
+                            }
+                        }
+                    }
+                }catch(IndexOutOfBoundsException except) {
+                    JOptionPane.showMessageDialog(pnlMain, except.getMessage());
+                }
+                catch(NumberFormatException except) {
+                    JOptionPane.showMessageDialog(pnlMain, "Please enter a number");
+                }
+            }
+        });
     }
 
 
