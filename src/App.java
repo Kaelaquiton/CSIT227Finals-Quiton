@@ -148,6 +148,26 @@ public class App extends JFrame{
                 }
             }
         });
+
+        btnSayHi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Person p : persons) {
+                    if (p instanceof Customer) {
+                        System.out.print(p.toString()+"\n");
+                    }
+                    if (p instanceof Clerk) {
+                        System.out.print(p.toString()+"\n");
+                    }
+                    if (p instanceof Manager) {
+                        System.out.print(p.toString()+"\n");
+                    }
+                }
+            }
+        });
+
+
+
     }
 
 
