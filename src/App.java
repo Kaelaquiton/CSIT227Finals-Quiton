@@ -1,9 +1,10 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class App extends JFrame{
     private JPanel pnlMain;
@@ -230,6 +231,41 @@ public class App extends JFrame{
                     JOptionPane.showMessageDialog(pnlMain, except.getMessage());
                 }catch (ArrayIndexOutOfBoundsException except){
                     JOptionPane.showMessageDialog(pnlMain,except.getMessage());
+                }
+            }
+        });
+
+
+        btnSavePerson.addActionListener(new ActionListener() {
+            @Override
+
+            public void actionPerformed(ActionEvent e) {
+                Scanner scan = new Scanner(System.in);
+                try (BufferedReader br = new BufferedReader(new FileReader("src/Person.txt"));
+                     BufferedWriter bw = new BufferedWriter(new FileWriter("src/Person.txt", false))) {
+                    bw.flush();
+                    if(persons.size()<1 || persons.size()==0){
+                        JOptionPane.showMessageDialog(pnlMain,"Please add to the list");
+                    }
+                    for(Person p: persons){
+
+                        if (p instanceof Customer) {
+                            bw.write(String.valueOf(persons.indexOf(p)+1)+". Customer - "+ p.getName()+" ("+p.getAge()+")\n");
+                        }
+                        if (p instanceof Clerk) {
+                            bw.write(String.valueOf(persons.indexOf(p)+1)+". Clerk - "+ p.getName()+" ("+p.getAge()+")\n");
+                        }
+                        if (p instanceof Manager) {
+                            bw.write(String.valueOf(persons.indexOf(p)+1)+". Manager - "+ p.getName()+" ("+p.getAge()+")\n");
+                        }
+                        taPersons.setText("");
+                        JOptionPane.showMessageDialog(pnlMain,"Saved");
+                    }
+
+                } catch (FileNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
         });
