@@ -29,7 +29,8 @@ public class App extends JFrame{
     public App() {
         persons = new ArrayList<>();
         // TODO add implementations for all milestones here
-
+        taPersons.setEditable(false);
+        taPersons.setEnabled(false);
 
         btnSave.addActionListener(new ActionListener() {
             @Override
