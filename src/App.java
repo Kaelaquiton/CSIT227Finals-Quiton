@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,45 +34,71 @@ public class App extends JFrame{
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(rbCustomer.isSelected()){
-                    String name = tfName.getText();
-                    int age = Integer.parseInt(tfAge.getText());
-                    Person p = new Customer(name,age);
-                    persons.add(p);
-                    taPersons.append(String.valueOf(persons.indexOf(p)+1)+". Customer - "+ name + "(" + age + ")"+"\n");
 
+                try{
+                    boolean selected = false;
+                    if(rbCustomer.isSelected()) {
+                        selected = true;
+                        String name = tfName.getText();
+                        int age = Integer.parseInt(tfAge.getText());
+                        Person p = new Customer(name, age);
+                        persons.add(p);
+                        taPersons.append(String.valueOf(persons.indexOf(p) + 1) + ". Customer - " + name + "(" + age + ")" + "\n");
+                        if (age < 0) {
+                            throw new IllegalArgumentException("Age cannot be less than 0");
+                        }
+                            if(name.equals("")) {
+                                throw new IllegalArgumentException("Please input the name");
+                            }
+                        }
+
+                    if(rbClerk.isSelected()) {
+                        selected = true;
+                        String name = tfName.getText();
+                        int age = Integer.parseInt(tfAge.getText());
+                        double salary = Double.parseDouble(tfSalary.getText());
+                        int monthsWorked = Integer.parseInt(tfMonths.getText());
+                        Person p = new Clerk(name, age, monthsWorked, salary);
+                        persons.add(p);
+                        taPersons.append(String.valueOf(persons.indexOf(p) + 1) + ". Clerk - " + name + "(" + age + ")" + "\n");
+                        if (age < 0 || monthsWorked < 0 || salary < 0) {
+                            throw new IllegalArgumentException("Please enter valid input");
+                        }
+                        if (name.equals("")) {
+                            throw new IllegalArgumentException("Please input the name");
+                        }
+
+                    }
+                    if(rbManager.isSelected()){
+                        selected = true;
+                        String name = tfName.getText();
+                        int age = Integer.parseInt(tfAge.getText());
+                        double salary = Double.parseDouble(tfSalary.getText());
+                        int monthsWorked = Integer.parseInt(tfMonths.getText());
+                        Person p = new Manager(name,age,monthsWorked,salary);
+                        persons.add(p);
+                        taPersons.append(String.valueOf(persons.indexOf(p)+1)+". Manager - "+ name + "(" + age + ")"+"\n");
+                        if (age < 0 || monthsWorked < 0 || salary < 0) {
+                            throw new IllegalArgumentException("Please enter valid input");
+                        }
+                        if (name.equals("")) {
+                            throw new IllegalArgumentException("Please input the name");
+                        }
+                    }
+                    if(selected == false){
+                        throw new IOException("Please select a person");
+                    }
+                }catch (NumberFormatException e0){
+                    JOptionPane.showMessageDialog(pnlMain,"Please enter valid input");
+                }catch(IllegalArgumentException e1) {
+                    JOptionPane.showMessageDialog(pnlMain, e1);
+                }catch(IOException e2){
+                    JOptionPane.showMessageDialog(pnlMain,e2);
                 }
-                if(rbClerk.isSelected()){
-                    String name = tfName.getText();
-                    int age = Integer.parseInt(tfAge.getText());
-                    double salary = Double.parseDouble(tfSalary.getText());
-                    int monthsWorked = Integer.parseInt(tfMonths.getText());
-                    Person p = new Clerk(name,age,monthsWorked,salary);
-                    persons.add(p);
-                    taPersons.append(String.valueOf(persons.indexOf(p)+1)+". Clerk - "+ name + "(" + age + ")"+"\n");
-
-                }
-
-                if(rbManager.isSelected()){
-                    String name = tfName.getText();
-                    int age = Integer.parseInt(tfAge.getText());
-                    double salary = Double.parseDouble(tfSalary.getText());
-                    int monthsWorked = Integer.parseInt(tfMonths.getText());
-                    Person p = new Manager(name,age,monthsWorked,salary);
-                    persons.add(p);
-                    taPersons.append(String.valueOf(persons.indexOf(p)+1)+". Manager - "+ name + "(" + age + ")"+"\n");
-
-                }
-
             }
         });
 
-
     }
-
-
-
-
 
 
     public static void main(String[] args) {
