@@ -40,8 +40,7 @@ public abstract class Person {
             return salary;
         }
         public double thirteenthMonth(){
-            salary = salary / (12 / months_worked);
-            return salary;
+            return (double) salary/(double) (12.0/months_worked);
         }
         public String toString() {
             return super.toString();
