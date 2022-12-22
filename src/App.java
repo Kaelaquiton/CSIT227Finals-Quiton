@@ -35,7 +35,6 @@ public class App extends JFrame{
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 try{
                     boolean selected = false;
                     if(rbCustomer.isSelected()) {
@@ -96,6 +95,18 @@ public class App extends JFrame{
                 }catch(IOException e2){
                     JOptionPane.showMessageDialog(pnlMain,e2);
                 }
+            }
+        });
+
+        btnClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tfName.setText("");
+                tfAge.setText("");
+                tfMonths.setText("");
+                tfSalary.setText("");
+                tfLoad.setText("");
+
             }
         });
 
