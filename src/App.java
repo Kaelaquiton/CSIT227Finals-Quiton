@@ -87,6 +87,12 @@ public class App extends JFrame{
                     if(selected == false){
                         throw new IOException("Please select a person");
                     }
+                    tfName.setText("");
+                    tfLoad.setText("");
+                    tfAge.setText("");
+                    tfMonths.setText("");
+                    tfSalary.setText("");
+
                 }catch (NumberFormatException except){
                     JOptionPane.showMessageDialog(pnlMain,"Please enter valid input");
                 }catch(IllegalArgumentException except) {
@@ -166,7 +172,37 @@ public class App extends JFrame{
             }
         });
 
+        btnReward.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if(persons.size()==0){
+                        throw new IllegalArgumentException("The list is empty");
+                    }
+                    int number = Integer.parseInt(tfLoad.getText());
+                    if(number < 1 || number > persons.size()) {
+                        throw new ArrayIndexOutOfBoundsException("The list is empty or out of bounds");
+                    }
+                    Person p = persons.get(number-1);
+                    if(p instanceof Employee) {
+                        Employee person = (Employee) p;
+                        if(person.getMonths_worked() == 0) {
+                            throw new ArithmeticException("Should work more than a month");
+                        }
+                        JOptionPane.showMessageDialog(pnlMain,  person.getName() + "'s reward is " + "₱" + String.format("%.2f", person.thirteenthMonth()));
 
+                    } else {
+                        throw new IllegalArgumentException("Is a customer");
+                    }
+                } catch(NumberFormatException except) {
+                    JOptionPane.showMessageDialog(pnlMain, "Please enter valid input");
+                } catch (ArithmeticException | IllegalArgumentException except) {
+                    JOptionPane.showMessageDialog(pnlMain, except.getMessage());
+                }catch (ArrayIndexOutOfBoundsException except){
+                    JOptionPane.showMessageDialog(pnlMain,except.getMessage());
+                }
+            }
+        });
 
     }
 
